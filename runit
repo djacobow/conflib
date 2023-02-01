@@ -1,0 +1,7 @@
+#/bin/bash
+
+g++ -g -c main.cpp -o main.o
+gcc -g -c conflib.c -o conflib.o
+g++ main.o conflib.o -o t
+./t
+
