@@ -131,7 +131,7 @@ int test_random() {
             }
         }
         for (auto item: ref) {
-            uint32_t val = conflib_get_value(&c, item.first);
+            uint32_t val = conflib_get_value(&c, item.first, NULL);
             if (val != item.second) {
                 printf("Error id %02x, ref %08x, conflib %08x\n", item.first, item.second, val);
                 errors++;

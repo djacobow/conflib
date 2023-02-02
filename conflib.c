@@ -254,10 +254,14 @@ void conflib_show_all(const conflib_context_t *c) {
     printf("                 Totals:   %5u  %5u\n", tvlen, ttlen);
 };
 
-uint32_t conflib_get_value(const conflib_context_t *c, uint16_t search_id) {
+uint32_t conflib_get_value(const conflib_context_t *c, uint16_t search_id, bool *found) {
     conflib_entry_t entry = conflib_find_entry(c, search_id);
+    uint32_t rv = 0;
+    bool f = false;
     if (entry.valid) {
-        return entry.val;
+        rv = entry.val;
+        f = true;
     }
-    return 0;
+    if (found) { *found = f; }; 
+    return rv ;
 }

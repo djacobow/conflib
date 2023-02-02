@@ -42,7 +42,7 @@ bool conflib_add_entry(conflib_context_t *c, uint16_t id, uint32_t nval);
 // returns an entry for the addr if found, otherwise the entry of the last item in the list
 conflib_entry_t conflib_find_entry(const conflib_context_t *c, uint16_t search_id);
 // returns the value if found, otherwise 0
-uint32_t conflib_get_value(const conflib_context_t *c, uint16_t search_id);
+uint32_t conflib_get_value(const conflib_context_t *c, uint16_t search_id, bool *found);
 
 void conflib_show_all(const conflib_context_t *c);
 bool conflib_remove_id(conflib_context_t *c, uint16_t id);
