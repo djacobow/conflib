@@ -99,7 +99,6 @@ class Conflib():
             else:
                 break
 
-
     def readFromFile(self, fname):
         with open(fname, 'rb') as ifh:
             data = ifh.read()
@@ -154,6 +153,17 @@ class Conflib():
 
 
 
+def conflib_loads(b: bytes) -> dict:
+    c = Conflib()
+    c.readFromBytes(b)
+    return { x['id']: x['value'] for x in c.getAll().values() }
+
+def conflib_saves(d: dict) -> bytes:
+    c = Conflib()
+    for (k, v) in d.items():
+        c.add(k, v)
+    return c.serialize()
+
 if __name__ == '__main__':
     import sys
 
@@ -164,7 +174,6 @@ if __name__ == '__main__':
 
     d = Conflib()
     d.readFromBytes(s)
-    # print(json.dumps(d.members, indent=2))
 
     errors = 0
     for c_id, c_m in c.getAll().items():
@@ -176,5 +185,6 @@ if __name__ == '__main__':
 
     d.show()
 
+    print(json.dumps(conflib_loads(s), indent=2))
     sys.exit(errors)
 
